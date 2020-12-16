@@ -1,0 +1,49 @@
+SPR500 Lab 3 Report
+Name:       Andrew McConnell
+Username:   ammcconnell2
+Student ID: 053115127
+
+
+default via 172.17.255.1 dev ens192 proto dhcp metric 100 
+172.17.0.0/16 dev ens192 proto kernel scope link src 172.17.15.2 metric 100 
+192.168.10.0/24 dev ens224 proto kernel scope link src 192.168.10.2 metric 101 
+192.168.11.0/24 via 192.168.10.1 dev ens224 
+● httpd.service - The Apache HTTP Server
+   Loaded: loaded (/usr/lib/systemd/system/httpd.service; disabled; vendor preset: disabled)
+   Active: inactive (dead)
+     Docs: man:httpd.service(8)
+-rw-------. 1 root root 198593 Dec 15 21:48 /var/log/messages
+-rw-------. 1 root root 3544 Dec 15 21:08 /var/log/boot.log
+-rw-------. 1 root root 0 Dec 13 03:25 /var/log/maillog
+-rw-------. 1 root root 1789 Dec 15 21:08 /var/log/secure
+-rw-rw-r--. 1 root utmp 26112 Dec 15 21:08 /var/log/wtmp
+-rw-rw----. 1 root utmp 384 Dec 15 21:08 /var/log/btmp
+-rw-rw-r--. 1 root utmp 292584 Dec 15 21:08 /var/log/lastlog
+-rw-r--r--. 1 root root 943402 Dec 15 21:18 /var/log/dnf.log
+34
+523
+Chain INPUT (policy DROP 39 packets, 9780 bytes)
+ pkts bytes target     prot opt in     out     source               destination         
+    0     0 ACCEPT     tcp  --  ens224 *       0.0.0.0/0            0.0.0.0/0            tcp dpt:22 state NEW,ESTABLISHED
+    0     0 ACCEPT     icmp --  ens224 *       0.0.0.0/0            0.0.0.0/0           
+    2    88 LOG        tcp  --  ens224 *       0.0.0.0/0            0.0.0.0/0            tcp dpt:80 flags:0x17/0x02 state NEW LOG flags 0 level 4 prefix "NEW HTTP SYN Request"
+    2    88 ACCEPT     tcp  --  ens224 *       0.0.0.0/0            0.0.0.0/0            tcp dpt:80
+
+Chain FORWARD (policy DROP 0 packets, 0 bytes)
+ pkts bytes target     prot opt in     out     source               destination         
+
+Chain OUTPUT (policy DROP 10 packets, 508 bytes)
+ pkts bytes target     prot opt in     out     source               destination         
+    0     0 ACCEPT     tcp  --  *      ens224  0.0.0.0/0            0.0.0.0/0            tcp spt:22 state ESTABLISHED
+    2   144 ACCEPT     icmp --  *      ens224  0.0.0.0/0            0.0.0.0/0           
+    0     0 ACCEPT     tcp  --  *      ens224  0.0.0.0/0            0.0.0.0/0            tcp spt:80
+SELinux status:                 enabled
+SELinuxfs mount:                /sys/fs/selinux
+SELinux root directory:         /etc/selinux
+Loaded policy name:             targeted
+Current mode:                   enforcing
+Mode from config file:          enforcing
+Policy MLS status:              enabled
+Policy deny_unknown status:     allowed
+Memory protection checking:     actual (secure)
+Max kernel policy version:      31
